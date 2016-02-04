@@ -20,20 +20,6 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @Rest\Get("/{facebookId}", requirements={"id"="\d+"}, defaults={"_format" = "json"})
-     * @ApiDoc(
-     *  resource=true,
-     *  section="Users",
-     *  output={"class"="AppBundle\Entity\User"},
-     *  description="Get user by Facebook Id"
-     * )
-     */
-    public function getUserAction(User $user)
-    {
-        return $user;
-    }
-
-    /**
      * @Rest\Put("", defaults={"_format" = "json"})
      * @ApiDoc(
      *  resource=true,
