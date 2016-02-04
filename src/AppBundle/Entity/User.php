@@ -7,30 +7,35 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use JMS\Serializer\Annotation as Serializer;
 use Gedmo\Timestampable\Traits\Timestampable;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Table(name="ft_user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("facebookId")
  */
 class User
 {
     use Timestampable;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $id;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -38,6 +43,7 @@ class User
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="facebook_id", type="string", length=255, unique=true)
      */
     private $facebookId;
@@ -45,6 +51,7 @@ class User
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -67,7 +74,7 @@ class User
     /**
      * Get id
      *
-     * @return int
+     * @return string
      */
     public function getId()
     {

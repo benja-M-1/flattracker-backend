@@ -113,6 +113,7 @@ Créer la base de données et l'utilisateur en lançant les commandes :
 CREATE DATABASE flattracker ENCODING 'UTF-8';
 CREATE USER flattracker ENCRYPTED PASSWORD 'flattracker';
 GRANT ALL ON DATABASE flattracker TO flattracker;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```
 
 Installation du projet

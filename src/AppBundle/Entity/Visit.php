@@ -20,9 +20,9 @@ class Visit
     use Timestampable;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      * @Serializer\Expose()
@@ -68,7 +68,7 @@ class Visit
     /**
      * Get id
      *
-     * @return integer 
+     * @return string
      */
     public function getId()
     {
