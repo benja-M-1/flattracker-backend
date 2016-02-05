@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\AdminBundle\Tests\Fixtures\DependencyInjection\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 use Gedmo\Timestampable\Traits\Timestampable;
@@ -33,6 +32,7 @@ class Visit
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Url()
      * @ORM\Column(name="url", type="string", length=511)
      * @Serializer\Expose()
      */
