@@ -12,4 +12,4 @@ services:
     http_options_listener:
         class:  AppBundle\EventListener\HttpOptionsListener
         tags:
-          - { name: kernel.event_listener, event: kernel.request }
+          - { name: kernel.event_listener, event: kernel.request, priority: 100 }
