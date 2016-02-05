@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     /**
-     * @Rest\Put("", defaults={"_format" = "json"})
+     * @Rest\Post("", defaults={"_format" = "json"})
      * @ApiDoc(
      *  resource=true,
      *  section="Users",
@@ -31,7 +31,7 @@ class UserController extends Controller
     public function createUserAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(new UserType(), $user, ['method' => 'PUT']);
+        $form = $this->createForm(new UserType(), $user);
 
         $form->handleRequest($request);
 
