@@ -4,6 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    access_control_allow_listener:
+        class:  AppBundle\EventListener\AccessControlAllowListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.response }
+
+    http_options_listener:
+        class:  AppBundle\EventListener\HttpOptionsListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.request }
