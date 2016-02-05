@@ -5,8 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use JMS\Serializer\Annotation as Serializer;
-use Gedmo\Timestampable\Traits\Timestampable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User
 {
-    use Timestampable;
+    use TimestampableEntity;
 
     /**
      * @var string

@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
-use Gedmo\Timestampable\Traits\Timestampable;
 
 /**
  * Visit
@@ -16,7 +16,7 @@ use Gedmo\Timestampable\Traits\Timestampable;
  */
 class Visit
 {
-    use Timestampable;
+    use TimestampableEntity;
 
     /**
      * @var string
