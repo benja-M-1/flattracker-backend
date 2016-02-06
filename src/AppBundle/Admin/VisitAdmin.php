@@ -57,7 +57,8 @@ class VisitAdmin extends Admin
     {
         $formMapper
             ->add('url')
-            ->add('owner')
+            ->add('searcher')
+            ->add('tracker')
         ;
     }
     /**
