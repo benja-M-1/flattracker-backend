@@ -20,6 +20,20 @@ use FOS\RestBundle\View\View;
 class VisitController extends Controller
 {
     /**
+     * @Rest\Get("", defaults={"_format" = "json"})
+     * @ApiDoc(
+     *  resource=true,
+     *  section="Visits",
+     *  output={"class"="AppBundle\Entity\Visit"},
+     *  description="Get all visits"
+     * )
+     */
+    public function cgetVisitAction()
+    {
+        return $this->getDoctrine()->getRepository('AppBundle:Visit')->findBy(array(), array('updatedAt' => 'DESC'));
+    }
+
+    /**
      * @Rest\Get("/{id}", defaults={"_format" = "json"})
      * @ApiDoc(
      *  resource=true,
