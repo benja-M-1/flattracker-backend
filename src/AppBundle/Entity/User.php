@@ -60,6 +60,7 @@ class User
      * @var Collection|Visit[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Visit", mappedBy="searcher", cascade={"persist", "remove"}, fetch="EAGER", orphanRemoval=true)
+     * @ORM\OrderBy({"updatedAt" = "DESC"})
      */
     private $asSearcherVisits;
 
@@ -68,6 +69,7 @@ class User
      * @var Collection|Visit[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Visit", mappedBy="tracker", cascade={"persist", "remove"}, fetch="EAGER", orphanRemoval=false)
+     * @ORM\OrderBy({"updatedAt" = "DESC"})
      */
     private $asTrackerVisits;
 
