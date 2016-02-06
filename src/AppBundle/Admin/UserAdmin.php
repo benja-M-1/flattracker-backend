@@ -64,6 +64,7 @@ class UserAdmin extends Admin
             ->add('asSearcherVisits')
             ->add('asTrackerVisits')
             ->add('facebookId')
+            ->add('facebookPictureUrl')
         ;
     }
     /**
@@ -78,6 +79,7 @@ class UserAdmin extends Admin
             ->add('asSearcherVisits')
             ->add('asTrackerVisits')
             ->add('facebookId')
+            ->add('facebookPictureUrl')
             ->add('createdAt')
             ->add('updatedAt')
         ;
