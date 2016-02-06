@@ -72,6 +72,14 @@ class User
     private $asTrackerVisits;
 
     /**
+     * @var string
+     */
+    public function __toString()
+    {
+        return sprintf('%s <%s>', $this->name, $this->email);
+    }
+
+    /**
      * Get id
      *
      * @return string
