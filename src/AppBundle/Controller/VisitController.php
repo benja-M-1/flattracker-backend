@@ -20,7 +20,7 @@ use FOS\RestBundle\View\View;
 class VisitController extends Controller
 {
     /**
-     * @Rest\Get("/{id}", requirements={"id"="\d+"}, defaults={"_format" = "json"})
+     * @Rest\Get("/{id}", defaults={"_format" = "json"})
      * @ApiDoc(
      *  resource=true,
      *  section="Visits",
