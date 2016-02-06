@@ -52,6 +52,14 @@ class User
      * @var string
      *
      * @Assert\NotBlank()
+     * @ORM\Column(name="facebook_picture_url", type="string", length=511, nullable=true)
+     */
+    private $facebookPictureUrl;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -258,5 +266,29 @@ class User
     public function getFacebookId()
     {
         return $this->facebookId;
+    }
+
+    /**
+     * Set facebookPictureUrl
+     *
+     * @param string $facebookPictureUrl
+     *
+     * @return User
+     */
+    public function setFacebookPictureUrl($facebookPictureUrl)
+    {
+        $this->facebookPictureUrl = $facebookPictureUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPictureUrl
+     *
+     * @return string
+     */
+    public function getFacebookPictureUrl()
+    {
+        return $this->facebookPictureUrl;
     }
 }

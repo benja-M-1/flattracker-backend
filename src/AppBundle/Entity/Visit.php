@@ -163,6 +163,7 @@ class Visit
         return [
             'id' => $this->tracker->getId(),
             'name' => $this->tracker->getName(),
+            'pictureUrl' => $this->searcher->getFacebookPictureUrl(),
         ];
     }
     /**
@@ -182,6 +183,7 @@ class Visit
         return [
             'id' => $this->searcher->getId(),
             'name' => $this->searcher->getName(),
+            'pictureUrl' => $this->searcher->getFacebookPictureUrl(),
         ];
     }
 }
