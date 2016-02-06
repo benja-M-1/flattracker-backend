@@ -21,6 +21,7 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('facebookId')
+            ->add('facebookPictureUrl')
             ->add('name')
         ;
     }
