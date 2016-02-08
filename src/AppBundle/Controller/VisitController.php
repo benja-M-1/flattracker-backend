@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Entity\Visit;
 use AppBundle\Event\VisitEvent;
 use AppBundle\Events;
 use AppBundle\Form\Type\VisitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -46,6 +48,20 @@ class VisitController extends Controller
      */
     public function getVisitAction(Visit $visit)
     {
+        return $visit;
+    }
+
+    /**
+     * @Rest\Put("/{visitId}/affect/{userId}", defaults={"_format" = "json"})
+     * @ParamConverter("visit", options={"mapping": {"visitId": "id"}})
+     * @ParamConverter("tracker", options={"mapping": {"userId": "id"}})
+     */
+    public function assignTrackerVisitAction(Visit $visit, User $tracker)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $visit->setTracker($tracker);
+        $em->flush();
+
         return $visit;
     }
 
