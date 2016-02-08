@@ -39,6 +39,14 @@ class Visit
     private $url;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="metadata", type="json_array")
+     * @Serializer\Expose()
+     */
+    private $metadata = array();
+
+    /**
      * Searcher
      *
      * @var User
@@ -185,5 +193,29 @@ class Visit
             'name' => $this->searcher->getName(),
             'pictureUrl' => $this->searcher->getFacebookPictureUrl(),
         ];
+    }
+
+    /**
+     * Set metadata
+     *
+     * @param array $metadata
+     *
+     * @return Visit
+     */
+    public function setMetadata(array $metadata)
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
+     * Get metadata
+     *
+     * @return array
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 }

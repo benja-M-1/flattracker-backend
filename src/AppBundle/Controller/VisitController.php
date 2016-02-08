@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Visit;
+use AppBundle\Event\VisitEvent;
+use AppBundle\Events;
 use AppBundle\Form\Type\VisitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,6 +66,8 @@ class VisitController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->get('event_dispatcher')->dispatch(Events::VISIT_UPDATED, new VisitEvent($visit));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($visit);
             $em->flush();
