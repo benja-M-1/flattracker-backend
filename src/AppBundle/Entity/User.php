@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @UniqueEntity("email")
  * @UniqueEntity("facebookId")
+ * @Serializer\ExclusionPolicy("all")
  */
 class User
 {
@@ -28,6 +29,7 @@ class User
      * @ORM\Column(name="id", type="string")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
+     * @Serializer\Expose()
      */
     private $id;
 
@@ -37,6 +39,7 @@ class User
      * @Assert\NotBlank()
      * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Serializer\Expose()
      */
     private $email;
 
@@ -45,6 +48,7 @@ class User
      *
      * @Assert\NotBlank()
      * @ORM\Column(name="facebook_id", type="string", length=255, unique=true)
+     * @Serializer\Expose()
      */
     private $facebookId;
 
@@ -53,6 +57,7 @@ class User
      *
      * @Assert\NotBlank()
      * @ORM\Column(name="facebook_picture_url", type="string", length=511, nullable=true)
+     * @Serializer\Expose()
      */
     private $facebookPictureUrl;
 
@@ -61,6 +66,7 @@ class User
      *
      * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
+     * @Serializer\Expose()
      */
     private $name;
 
