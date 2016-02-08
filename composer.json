@@ -31,7 +31,7 @@
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "gedmo/doctrine-extensions": "^2.4",
         "stof/doctrine-extensions-bundle": "~1.1@dev",
-        "scottmac/opengraph": "master"
+        "scottmac/opengraph": "0.0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -69,13 +69,12 @@
             "file": "app/config/parameters.yml"
         }
     },
-  "minimum-stability": "dev",
   "repositories": [
       {
         "type": "package",
         "package": {
           "name": "scottmac/opengraph",
-          "version": "master",
+          "version": "0.0.1",
           "dist": {
             "url": "https://github.com/scottmac/opengraph/archive/master.zip",
             "type": "zip"
