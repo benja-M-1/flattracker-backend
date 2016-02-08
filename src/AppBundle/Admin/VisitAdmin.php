@@ -71,6 +71,7 @@ class VisitAdmin extends Admin
             ->add('url')
             ->add('searcher')
             ->add('tracker')
+            ->add('metadata', 'array')
             ->add('createdAt')
             ->add('updatedAt')
         ;

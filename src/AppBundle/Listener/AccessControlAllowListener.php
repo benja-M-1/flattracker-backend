@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\EventListener;
+namespace AppBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 

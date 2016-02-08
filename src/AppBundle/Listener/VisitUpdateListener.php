@@ -40,9 +40,8 @@ class VisitUpdateListener implements EventSubscriberInterface
     public function updateVisitTitle(VisitEvent $visitEvent)
     {
         $visit = $visitEvent->getVisit();
-        $metadata = array();
-
-        $this->updateMetadata($visit->getUrl(), $metadata);
+        $metadata = [];
+        $metadata = $this->updateMetadata($visit->getUrl(), $metadata);
 
         $visit->setMetadata($metadata);
     }
@@ -50,17 +49,24 @@ class VisitUpdateListener implements EventSubscriberInterface
     /**
      * @param $url
      * @param $metadata
+     *
+     * @return array
      */
-    private function updateMetadata($url, &$metadata)
+    private function updateMetadata($url, $metadata)
     {
+        $info = [];
+
         try {
-            $info = Embed::create($url);
-            array_merge($metadata, [
-                'title' => $info->getTitle(),
-                'description' => $info->getDescription(),
+            $opengraphData = Embed::create($url);
+            $info = array_merge($metadata, [
+                'title' => $opengraphData->getTitle(),
+                'description' => $opengraphData->getDescription(),
             ]);
+
         } catch (\Exception $e) {
             $this->logger->info($e->getMessage());
         }
+
+        return $info;
     }
 }

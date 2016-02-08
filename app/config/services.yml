@@ -5,18 +5,18 @@ parameters:
 
 services:
     access_control_allow_listener:
-        class:  AppBundle\EventListener\AccessControlAllowListener
+        class:  AppBundle\Listener\AccessControlAllowListener
         tags:
           - { name: kernel.event_listener, event: kernel.response }
 
     http_options_listener:
-        class:  AppBundle\EventListener\HttpOptionsListener
+        class:  AppBundle\Listener\HttpOptionsListener
         tags:
           - { name: kernel.event_listener, event: kernel.request, priority: 100 }
 
     app.visit.updater:
         class: AppBundle\Listener\VisitUpdateListener
         tags:
-          - { name: kernel.event_listener, event: kernel.exception }
+          - { name: kernel.event_subscriber }
         arguments:
           - @logger
