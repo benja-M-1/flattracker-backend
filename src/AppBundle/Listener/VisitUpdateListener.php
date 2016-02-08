@@ -5,8 +5,8 @@ namespace AppBundle\Listener;
 
 use AppBundle\Event\VisitEvent;
 use AppBundle\Events;
+use Embed\Embed;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use OpenGraph;
 
 class VisitUpdateListener implements EventSubscriberInterface
 {
@@ -40,8 +40,8 @@ class VisitUpdateListener implements EventSubscriberInterface
     private function updateMetadata($url, &$metadata)
     {
         try {
-            $graph = OpenGraph::fetch($url);
-            array_merge($metadata, $graph);
+            $info = Embed::create($url);
+            array_merge($metadata, $info);
         } catch (\Exception $e) {}
     }
 }

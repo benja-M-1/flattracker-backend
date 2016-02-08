@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d23bc5f85d727963b77d39b91c4f5482",
-    "content-hash": "9e318f71b18524a5a2e10bd3191ec36b",
+    "hash": "0732bc95b2572ef024e435e1e2f340d7",
+    "content-hash": "004c70357189efa558aa60e02c9d4162",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1001,6 +1001,60 @@
                 "orm"
             ],
             "time": "2016-01-05 21:34:58"
+        },
+        {
+            "name": "embed/embed",
+            "version": "v2.6.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarotero/Embed.git",
+                "reference": "45f7418e0ec39b7dfdac52c59e3cb94452be3fab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/45f7418e0ec39b7dfdac52c59e3cb94452be3fab",
+                "reference": "45f7418e0ec39b7dfdac52c59e3cb94452be3fab",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "5.x",
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle@5.x": "To use Guzzle5 request resolver"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Embed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP library to retrieve page info using oembed, opengraph, etc",
+            "homepage": "https://github.com/oscarotero/Embed",
+            "keywords": [
+                "embed",
+                "embedly",
+                "oembed",
+                "opengraph",
+                "twitter cards"
+            ],
+            "time": "2016-02-06 16:31:42"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -2123,17 +2177,6 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
-        },
-        {
-            "name": "scottmac/opengraph",
-            "version": "0.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/scottmac/opengraph/archive/master.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
         },
         {
             "name": "sensio/distribution-bundle",
