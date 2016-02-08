@@ -7,9 +7,23 @@ use AppBundle\Event\VisitEvent;
 use AppBundle\Events;
 use Embed\Embed;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 class VisitUpdateListener implements EventSubscriberInterface
 {
+    /** @var LoggerInterface */
+    private $logger;
+
+    /**
+     * VisitUpdateListener constructor
+     * .
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -41,7 +55,12 @@ class VisitUpdateListener implements EventSubscriberInterface
     {
         try {
             $info = Embed::create($url);
-            array_merge($metadata, $info);
-        } catch (\Exception $e) {}
+            array_merge($metadata, [
+                'title' => $info->getTitle(),
+                'description' => $info->getDescription(),
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->info($e->getMessage());
+        }
     }
 }
