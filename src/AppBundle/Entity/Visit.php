@@ -171,7 +171,7 @@ class Visit
         return [
             'id' => $this->tracker->getId(),
             'name' => $this->tracker->getName(),
-            'pictureUrl' => $this->searcher->getFacebookPictureUrl(),
+            'pictureUrl' => $this->tracker->getFacebookPictureUrl(),
         ];
     }
     /**
