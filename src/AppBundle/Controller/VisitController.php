@@ -124,6 +124,7 @@ class VisitController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
+            $em->refresh($visit);
             $view = View::create($visit, Response::HTTP_CREATED);
         } else {
             $view = View::create($form, Response::HTTP_BAD_REQUEST);
