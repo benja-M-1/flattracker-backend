@@ -34,4 +34,12 @@ class MessageType extends AbstractType
             'csrf_protection' => false,
         ));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'message';
+    }
 }
