@@ -113,12 +113,12 @@ class VisitController extends Controller
     public function postMessageAction(Request $request, Visit $visit)
     {
         $message = new Message();
+        $visit->addMessage($message);
         $form = $this->createForm(new MessageType(), $message);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $visit->addMessage($message);
             $this->get('event_dispatcher')->dispatch(Events::MESSAGE_SENT, new MessageEvent($message));
 
             $em = $this->getDoctrine()->getManager();
