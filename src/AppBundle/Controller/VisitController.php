@@ -101,7 +101,7 @@ class VisitController extends Controller
     }
 
     /**
-     * @Rest\Post("/visits/{visitId}/messages", defaults={"_format" = "json"})
+     * @Rest\Post("/{visitId}/messages", defaults={"_format" = "json"})
      * @ApiDoc(
      *  resource=true,
      *  section="Visits",
