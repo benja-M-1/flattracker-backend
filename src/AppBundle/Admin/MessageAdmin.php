@@ -9,12 +9,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
- * Class UserAdmin
+ * Class MessageAdmin
  */
-class UserAdmin extends Admin
+class MessageAdmin extends Admin
 {
-    protected $baseRouteName = 'sonata_user';
-    protected $baseRoutePattern = 'users';
+    protected $baseRouteName = 'sonata_message';
+    protected $baseRoutePattern = 'messages';
 
     /**
      * @param DatagridMapper $datagridMapper
@@ -23,9 +23,7 @@ class UserAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('name')
-            ->add('email')
-            ->add('facebookId')
+            ->add('content')
             ->add('createdAt')
             ->add('updatedAt')
         ;
@@ -37,11 +35,9 @@ class UserAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('name')
-            ->add('email')
-            ->add('nbAsSearcherVisits')
-            ->add('nbAsTrackerVisits')
-            ->add('nbMessages')
+            ->add('author')
+            ->add('visit')
+            ->add('content')
             ->add('createdAt')
             ->add('updatedAt')
             ->add('_action', 'actions', array(
@@ -60,12 +56,7 @@ class UserAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('email')
-            ->add('asSearcherVisits')
-            ->add('asTrackerVisits')
-            ->add('facebookId')
-            ->add('facebookPictureUrl')
+            ->add('content')
         ;
     }
     /**
@@ -75,12 +66,9 @@ class UserAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('name')
-            ->add('email')
-            ->add('asSearcherVisits')
-            ->add('asTrackerVisits')
-            ->add('facebookId')
-            ->add('facebookPictureUrl')
+            ->add('author')
+            ->add('visit')
+            ->add('content')
             ->add('messages')
             ->add('createdAt')
             ->add('updatedAt')

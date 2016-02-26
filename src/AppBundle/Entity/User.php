@@ -88,6 +88,13 @@ class User
     private $asTrackerVisits;
 
     /**
+     * @var Collection|Message[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message", mappedBy="author", cascade={"persist", "remove"}, fetch="EAGER", orphanRemoval=false)
+     */
+    private $messages;
+
+    /**
      * @var string
      */
     public function __toString()
@@ -136,6 +143,7 @@ class User
     {
         $this->asSearcherVisits = new ArrayCollection();
         $this->asTrackerVisits = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     /**
@@ -296,5 +304,41 @@ class User
     public function getFacebookPictureUrl()
     {
         return $this->facebookPictureUrl;
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return User
+     */
+    public function addMessage(Message $message)
+    {
+        $this->messages[] = $message;
+        $message->setAuthor($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     */
+    public function removeMessage(Message $message)
+    {
+        $this->messages->removeElement($message);
+        $message->setAuthor(null);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

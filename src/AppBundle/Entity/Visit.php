@@ -2,10 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Visit
@@ -64,6 +66,15 @@ class Visit
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", fetch="EAGER", inversedBy="asTrackerVisits")
      */
     private $tracker;
+
+    /**
+     * @var Collection|Message[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Message", mappedBy="visit", cascade={"persist", "remove"}, fetch="EAGER", orphanRemoval=false)
+     * @ORM\OrderBy({"createdAt" = "DESC"})
+     * @Serializer\Expose()
+     */
+    private $messages;
 
     /**
      * @return string
@@ -217,5 +228,57 @@ class Visit
     public function getMetadata()
     {
         return $this->metadata;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return Visit
+     */
+    public function addMessage(Message $message)
+    {
+        $this->messages[] = $message;
+        $message->setVisit($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     */
+    public function removeMessage(Message $message)
+    {
+        $this->messages->removeElement($message);
+        $message->setVisit(null);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbMessages()
+    {
+        return $this->messages->count();
     }
 }
