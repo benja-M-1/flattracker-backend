@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  *
  * @ORM\Table(name="message")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MessageRepository")
- * @Serializer\ExclusionPolicy("all")
+ * @Serializer\ExclusionPolicy("none")
  */
 class Message
 {
@@ -26,7 +26,6 @@ class Message
      * @ORM\Column(name="id", type="string")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
-     * @Serializer\Expose()
      */
     private $id;
 
@@ -36,7 +35,6 @@ class Message
      * @Assert\NotNull()
      * @Assert\NotBlank()
      * @ORM\Column(name="content", type="text")
-     * @Serializer\Expose()
      */
     private $content;
 
@@ -47,7 +45,6 @@ class Message
      *
      * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Visit", fetch="EAGER", inversedBy="messages")
-     * @Serializer\Expose()
      */
     private $visit;
 
@@ -58,6 +55,7 @@ class Message
      *
      * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", fetch="EAGER", inversedBy="messages")
+     * @Serializer\Exclude()
      */
     private $author;
 
