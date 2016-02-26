@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
 /**
@@ -174,5 +175,18 @@ class Message
             'pictureUrl' => $this->author->getFacebookPictureUrl(),
             'role'  => $role,
         ];
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        // check if the name is actually a fake name
+        if ($this->author != $this->visit->getSearcher() && $this->author != $this->visit->getTracker()) {
+            $context->buildViolation('Auteur invalide !')
+                ->atPath('author')
+                ->addViolation();
+        }
     }
 }

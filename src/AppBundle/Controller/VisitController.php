@@ -2,10 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Message;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Visit;
+use AppBundle\Event\MessageEvent;
 use AppBundle\Event\VisitEvent;
 use AppBundle\Events;
+use AppBundle\Form\Type\MessageType;
 use AppBundle\Form\Type\VisitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -86,6 +89,40 @@ class VisitController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($visit);
+            $em->flush();
+            $view = View::create($visit, Response::HTTP_CREATED);
+        } else {
+            $view = View::create($form, Response::HTTP_BAD_REQUEST);
+        }
+
+        $handler = $this->get('fos_rest.view_handler');
+
+        return $handler->handle($view);
+    }
+
+    /**
+     * @Rest\Post("/visits/{visitId}/messages", defaults={"_format" = "json"})
+     * @ApiDoc(
+     *  resource=true,
+     *  section="Visits",
+     *  output={"class"="AppBundle\Entity\Visit"},
+     *  description="Add message"
+     * )
+     * @ParamConverter("visit", options={"mapping": {"visitId": "id"}})
+     */
+    public function postMessageAction(Request $request, Visit $visit)
+    {
+        $message = new Message();
+        $form = $this->createForm(new MessageType(), $message);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $visit->addMessage($message);
+            $this->get('event_dispatcher')->dispatch(Events::MESSAGE_SENT, new MessageEvent($message));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($message);
             $em->flush();
             $view = View::create($visit, Response::HTTP_CREATED);
         } else {
